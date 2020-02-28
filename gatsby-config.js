@@ -5,6 +5,24 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    {
+      resolve: "gatsby-source-prismic-graphql",
+      options: {
+        repositoryName: "FasterWeb", // (REQUIRED, replace with your own)
+        pages: [
+          {
+            // (optional, builds pages dynamically)
+            type: "Blog", // TypeName from prismic
+            match: "/blog/:uid", // Pages will be generated under this pattern
+            path: "/blog", // Placeholder page for unpublished documents
+            component: require.resolve("./src/templates/post.js"),
+          },
+        ],
+      },
+    },
+
+    "gatsby-plugin-resolve-src",
+
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
